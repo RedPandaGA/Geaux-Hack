@@ -62,7 +62,6 @@ export default function App() {
       </TabPanel>
       <TabPanel value={value} index={1}>
           <div className="Nope">
-            {/*{createNodes(outData)}*/}
             <Flow/>
           </div>
       </TabPanel>
