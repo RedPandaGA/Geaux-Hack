@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import { Tabs, Tab, Typography,  } from '@mui/material';
 import ListPage from './ListPage/ListPage';
 import "./App.css";
-import { createNodes } from "./Flow/initial-elements";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -48,7 +47,7 @@ export default function App() {
     setValue(newValue);
   };
 
-  
+
   return (
     <div className="App">
       <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
