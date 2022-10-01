@@ -1,5 +1,7 @@
-html,
-body,
+html, body{
+  min-height: 100% !important;
+  height: 100%;
+}
 #root,
 .App {
   height: 100%;
@@ -8,4 +10,8 @@ body,
 .App {
   font-family: sans-serif;
   text-align: center;
+}
+
+.Nope{
+  height: 880px;
 }

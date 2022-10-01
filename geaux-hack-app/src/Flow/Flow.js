@@ -26,16 +26,17 @@ const OverviewFlow = () => {
   );
 
   return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      onConnect={onConnect}
-      onInit={onInit}
-      fitView
-      attributionPosition="top-right"
-    >
+    <>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        onInit={onInit}
+        fitView
+        attributionPosition="top-right"
+      >
       <MiniMap
         nodeStrokeColor={(n) => {
           if (n.style?.background) return n.style.background;
@@ -55,6 +56,7 @@ const OverviewFlow = () => {
       <Controls />
       <Background color="#aaa" gap={16} />
     </ReactFlow>
+    </>
   );
 };
 
