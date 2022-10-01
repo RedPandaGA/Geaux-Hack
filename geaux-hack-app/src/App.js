@@ -48,7 +48,7 @@ export default function App() {
     setValue(newValue);
   };
 
-//sx={{padding: 0}}
+  
   return (
     <div className="App">
       <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
