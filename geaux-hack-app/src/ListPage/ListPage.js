@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -21,32 +22,23 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { Stack } from '@mui/system';
 
 
 function createData(name, courseid, required, credithrs, minimumgrade) {
-return {
-    name,
-    courseid,
-    required,
-    credithrs,
-    minimumgrade,
-};
+    return {
+        name,
+        courseid,
+        required,
+        credithrs,
+        minimumgrade,
+    };
 }
 
 const rows = [
-createData('Cupcake', '305', 3.7, 67, 4.3),
-createData('Donut', 452, 25.0, 51, 4.9),
-createData('Eclair', 262, 16.0, 24, 6.0),
-createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-createData('Gingerbread', 356, 16.0, 49, 3.9),
-createData('Honeycomb', 408, 3.2, 87, 6.5),
-createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-createData('Jelly Bean', 375, 0.0, 94, 0.0),
-createData('KitKat', 518, 26.0, 65, 7.0),
-createData('Lollipop', 392, 0.2, 98, 0.0),
-createData('Marshmallow', 318, 0, 81, 2.0),
-createData('Nougat', 360, 19.0, 9, 37.0),
-createData('Oreo', 437, 18.0, 63, 4.0),
+    
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -236,15 +228,6 @@ numSelected: PropTypes.number.isRequired,
 selected: PropTypes.array
 };
 
-function deleterows(selected){
-    for(let i = 0; i < selected.length; i++){
-        var index = rows.map((n) => n.name).indexOf(selected[i]);
-        if(index > -1){
-            rows.splice(index, 1);
-        }
-    }
-};
-
 export default function ListPage() {
 const [order, setOrder] = React.useState('asc');
 const [orderBy, setOrderBy] = React.useState('calories');
@@ -252,6 +235,12 @@ const [page, setPage] = React.useState(0);
 const [selected, setSelected] = React.useState([]);
 const [dense, setDense] = React.useState(false);
 const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+const nameIn = useRef('');
+const courseIdIn = useRef('');
+const requiredIn = useRef('');
+const credithrsIn = useRef('');
+const minimumIn = useRef('');
 
 const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -302,6 +291,11 @@ const handleChangeDense = (event) => {
 };
 
 const isSelected = (name) => selected.indexOf(name) !== -1;
+
+const handleSubmit = () => {
+    rows.push(createData(nameIn.current.value,courseIdIn.current.value, requiredIn.current.value, credithrsIn.current.value, minimumIn.current.value));
+    
+}
 
 // Avoid a layout jump when reaching the last page with empty rows.
 const emptyRows =
@@ -394,6 +388,43 @@ return (
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
     />
+    <div style={{padding: 8}}></div>
+    <Stack direction = "row" spacing={2}>
+        <TextField
+            required
+            id="1"
+            label="Course Name"
+            inputRef={nameIn}
+        />
+        <TextField
+            required
+            id="2"
+            label="Course ID"
+            inputRef={courseIdIn}
+        />
+        <TextField
+            required
+            id="3"
+            label="Required Courses"
+            inputRef={requiredIn}
+        />
+        <TextField
+            required
+            id="4"
+            label="Credit Hours"
+            type="number"
+            inputRef={credithrsIn}
+        />
+        <TextField
+            required
+            id="5"
+            label="Minimum Grade"
+            inputRef={minimumIn}
+        />
+        <Button variant="contained" onClick={handleSubmit}>
+            Submit
+        </Button>
+    </Stack>
     </Box>
 );
 }
