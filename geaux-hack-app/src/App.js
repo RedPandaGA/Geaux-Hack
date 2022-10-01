@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from 'prop-types';
 import Flow from "./Flow/Flow";
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import { Tabs, Tab, Typography,  } from '@mui/material';
+import ListPage from './ListPage/ListPage';
 import "./App.css";
 
 function TabPanel(props) {
@@ -51,13 +50,14 @@ export default function App() {
     <div className="App">
       <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="Course List" {...a11yProps(0)} />
+          <Tab label="Flowchart" {...a11yProps(1)} />
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Item One
+        <ListPage>
+        </ListPage>
       </TabPanel>
       <TabPanel value={value} index={1}>
           <div className="Nope">
