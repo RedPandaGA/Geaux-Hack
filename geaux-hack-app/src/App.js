@@ -56,8 +56,8 @@ export default function App() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <ListPage>
-        </ListPage>
+        <ListPage/>
+        
       </TabPanel>
       <TabPanel value={value} index={1}>
           <div className="Nope">
