@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import { Tabs, Tab, Typography,  } from '@mui/material';
 import ListPage from './ListPage/ListPage';
 import "./App.css";
+import { createNodes } from "./Flow/initial-elements";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,10 +42,12 @@ function a11yProps(index) {
 
 export default function App() {
   const [value, setValue] = React.useState(0);
+  const [outData, setOutData] = React.useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
 //sx={{padding: 0}}
   return (
     <div className="App">
@@ -55,12 +58,12 @@ export default function App() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <ListPage/>
-
+        <ListPage outData = {outData} setOutData = {setOutData}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
           <div className="Nope">
-            <Flow />
+            {/*{createNodes(outData)}*/}
+            <Flow/>
           </div>
       </TabPanel>
     </div>

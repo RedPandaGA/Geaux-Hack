@@ -147,14 +147,13 @@ return (
 );
 }
 
-EnhancedTableHead.propTypes = {
+/*EnhancedTableHead.propTypes = {
 numSelected: PropTypes.number.isRequired,
 onRequestSort: PropTypes.func.isRequired,
 onSelectAllClick: PropTypes.func.isRequired,
 order: PropTypes.oneOf(['asc', 'desc']).isRequired,
 orderBy: PropTypes.string.isRequired,
-rowCount: PropTypes.number.isRequired,
-};
+};*/
 
 const EnhancedTableToolbar = (props) => {
     const { numSelected , selected , setSelected, rows, setRows} = props;
@@ -224,14 +223,14 @@ numSelected: PropTypes.number.isRequired,
 selected: PropTypes.array
 };
 //rows.push(createData(nameIn.current.value,courseIdIn.current.value, requiredIn.current.value, credithrsIn.current.value, minimumIn.current.value)
-export default function ListPage() {
+export default function ListPage({outData, setOutData}) {
 const [order, setOrder] = React.useState('asc');
 const [orderBy, setOrderBy] = React.useState('calories');
 const [page, setPage] = React.useState(0);
 const [selected, setSelected] = React.useState([]);
 const [dense, setDense] = React.useState(false);
 const [rowsPerPage, setRowsPerPage] = React.useState(5);
-const [rows, setRows] = React.useState([]);
+const [rows, setRows] = React.useState(outData);
 
 const nameIn = useRef('');
 const courseIdIn = useRef('');
@@ -292,6 +291,7 @@ const isSelected = (name) => selected.indexOf(name) !== -1;
 const handleSubmit = () => {
     const temp = createData(nameIn.current.value,courseIdIn.current.value, requiredIn.current.value, credithrsIn.current.value, minimumIn.current.value);
     setRows(previous => [...previous, temp]);
+    setOutData(previous => [...previous, temp]);
 }
 
 // Avoid a layout jump when reaching the last page with empty rows.
