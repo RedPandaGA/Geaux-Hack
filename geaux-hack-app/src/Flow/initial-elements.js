@@ -9,7 +9,7 @@ export var nodes = [
     data: {
       label: (
         <>
-          Welcome to <strong>React Flow!</strong>
+          This is an example of <strong>React Flow!</strong>
         </>
       )
     },
@@ -20,7 +20,7 @@ export var nodes = [
     data: {
       label: (
         <>
-          This is a <strong>default node</strong>
+          This would be used to generate a flowchart
         </>
       )
     },
@@ -31,29 +31,23 @@ export var nodes = [
     data: {
       label: (
         <>
-          This one has a <strong>custom style</strong>
+          This is an example of nodes linking to make connections, this would be used to show prereqs.
         </>
       )
     },
-    position: { x: 400, y: 100 },
-    style: {
-      background: "#D6D5E6",
-      color: "#333",
-      border: "1px solid #222138",
-      width: 180
-    }
+    position: { x: 400, y: 75 },
   },
   {
     id: "4",
     position: { x: 250, y: 200 },
     data: {
-      label: "Another default node"
+      label: <>CSC1350</>
     }
   },
   {
     id: "5",
     data: {
-      label: "Node id: 5"
+      label: <>CSC1351</>
     },
     position: { x: 250, y: 325 }
   },
@@ -63,7 +57,7 @@ export var nodes = [
     data: {
       label: (
         <>
-          An <strong>output node</strong>
+          These nodes would be end caps to signify that they are the last in the sequence
         </>
       )
     },
@@ -72,7 +66,7 @@ export var nodes = [
   {
     id: "7",
     type: "output",
-    data: { label: "Another output node" },
+    data: { label: <>You can see the several different arrow/edge colors this would be used to signify current/additional information about class relationships</> },
     position: { x: 400, y: 450 }
   }
 ];
