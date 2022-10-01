@@ -1,11 +1,13 @@
-import './App.css';
+import React from "react";
 
-function App() {
+import Flow from "./Flow/Flow";
+
+import "./App.css";
+
+export default function App() {
   return (
     <div className="App">
-        <h1>Hello</h1>
+      <Flow />
     </div>
   );
 }
-
-export default App;
