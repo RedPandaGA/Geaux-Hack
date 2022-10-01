@@ -37,10 +37,6 @@ function createData(name, courseid, required, credithrs, minimumgrade) {
     };
 }
 
-const rows = [
-    
-];
-
 function descendingComparator(a, b, orderBy) {
 if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -161,7 +157,7 @@ rowCount: PropTypes.number.isRequired,
 };
 
 const EnhancedTableToolbar = (props) => {
-    const { numSelected , selected , setSelected} = props;
+    const { numSelected , selected , setSelected, rows, setRows} = props;
 
     const handleDelete = () =>{
         console.log(selected.length);
@@ -171,7 +167,7 @@ const EnhancedTableToolbar = (props) => {
                 rows.splice(index, 1);
             }
         }
-        
+        setRows(rows);
         setSelected([]);
     };
     
@@ -227,7 +223,7 @@ EnhancedTableToolbar.propTypes = {
 numSelected: PropTypes.number.isRequired,
 selected: PropTypes.array
 };
-
+//rows.push(createData(nameIn.current.value,courseIdIn.current.value, requiredIn.current.value, credithrsIn.current.value, minimumIn.current.value)
 export default function ListPage() {
 const [order, setOrder] = React.useState('asc');
 const [orderBy, setOrderBy] = React.useState('calories');
@@ -235,6 +231,7 @@ const [page, setPage] = React.useState(0);
 const [selected, setSelected] = React.useState([]);
 const [dense, setDense] = React.useState(false);
 const [rowsPerPage, setRowsPerPage] = React.useState(5);
+const [rows, setRows] = React.useState([]);
 
 const nameIn = useRef('');
 const courseIdIn = useRef('');
@@ -293,8 +290,8 @@ const handleChangeDense = (event) => {
 const isSelected = (name) => selected.indexOf(name) !== -1;
 
 const handleSubmit = () => {
-    rows.push(createData(nameIn.current.value,courseIdIn.current.value, requiredIn.current.value, credithrsIn.current.value, minimumIn.current.value));
-    
+    const temp = createData(nameIn.current.value,courseIdIn.current.value, requiredIn.current.value, credithrsIn.current.value, minimumIn.current.value);
+    setRows(previous => [...previous, temp]);
 }
 
 // Avoid a layout jump when reaching the last page with empty rows.
@@ -304,7 +301,7 @@ const emptyRows =
 return (
     <Box sx={{ width: '100%' }}>
     <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} selected = {selected} setSelected = {setSelected} />
+        <EnhancedTableToolbar numSelected={selected.length} selected = {selected} setSelected = {setSelected} rows = {rows} setRows = {setRows} />
         <TableContainer>
         <Table
             sx={{ minWidth: 750 }}
